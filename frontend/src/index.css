@@ -45,7 +45,6 @@
     @apply text-green-400 text-sm mt-1;
   }
   
-  /* Custom scrollbar for webkit browsers */
   .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
   }
@@ -62,17 +61,14 @@
     @apply bg-dark-500;
   }
   
-  /* Glass morphism effect */
   .glass {
     @apply bg-white/10 backdrop-blur-md border border-white/20;
   }
   
-  /* Gradient text */
   .gradient-text {
     @apply bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent;
   }
 
-  /* Animations */
   @keyframes fadeInScale {
     from {
       opacity: 0;

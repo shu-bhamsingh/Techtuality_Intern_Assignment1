@@ -55,7 +55,6 @@ export const ToastProvider = ({ children }) => {
   return (
     <ToastContext.Provider value={value}>
       {children}
-      {/* Toast Container */}
       <div className="fixed top-4 right-4 z-[9999] space-y-2 pointer-events-none">
         {toasts.map((toast, index) => (
           <div 

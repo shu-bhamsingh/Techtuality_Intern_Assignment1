@@ -28,7 +28,6 @@ const Signup = () => {
     return () => clearError();
   }, [clearError]);
 
-  // Test toast on component mount
   useEffect(() => {
     const timer = setTimeout(() => {
       showSuccess('Welcome to the signup page!');
@@ -43,7 +42,6 @@ const Signup = () => {
       [name]: value
     }));
     
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -115,9 +113,7 @@ const Signup = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
-        {/* Main Card */}
         <div className="bg-dark-800/90 backdrop-blur-sm border border-dark-700 rounded-2xl shadow-2xl p-8 space-y-6">
-          {/* Header */}
           <div className="text-center">
             <div className="mx-auto h-12 w-12 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mb-4">
               <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -132,7 +128,6 @@ const Signup = () => {
             </p>
           </div>
           
-          {/* Form */}
           <form className="space-y-6" onSubmit={handleSubmit}>
             {error && (
               <Alert type="error" message={error} onClose={clearError} />
@@ -214,7 +209,6 @@ const Signup = () => {
                     value={formData.password}
                     onChange={handleChange}
                   />
-                  {/* Password Strength Indicator */}
                   <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
                     <div className={`w-3 h-3 rounded-full transition-all duration-200 ${
                       formData.password.length >= 8 && /[A-Z]/.test(formData.password) && /[a-z]/.test(formData.password) && /\d/.test(formData.password) && /[@$!%*?&]/.test(formData.password)
@@ -279,7 +273,6 @@ const Signup = () => {
             </button>
           </form>
           
-          {/* Footer */}
           <div className="text-center pt-4 border-t border-dark-700">
             <p className="text-gray-400 text-sm">
               Already have an account?{' '}
@@ -293,7 +286,6 @@ const Signup = () => {
           </div>
         </div>
         
-        {/* Background decoration */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-green-500/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>

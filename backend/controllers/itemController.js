@@ -1,15 +1,11 @@
 const { validationResult } = require('express-validator');
 const Item = require('../models/Item');
 
-// @desc    Get all items for logged in user
-// @route   GET /api/items
-// @access  Private
 const getItems = async (req, res) => {
   try {
     const { search, sort } = req.query;
     let query = { userId: req.user._id };
 
-    // Add search functionality
     if (search) {
       query.$or = [
         { title: { $regex: search, $options: 'i' } },
@@ -17,8 +13,7 @@ const getItems = async (req, res) => {
       ];
     }
 
-    // Add sorting
-    let sortBy = { createdAt: -1 }; // Default sort by newest
+    let sortBy = { createdAt: -1 };
     if (sort === 'title') {
       sortBy = { title: 1 };
     } else if (sort === 'oldest') {
@@ -41,9 +36,6 @@ const getItems = async (req, res) => {
   }
 };
 
-// @desc    Create new item
-// @route   POST /api/items
-// @access  Private
 const createItem = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -77,9 +69,6 @@ const createItem = async (req, res) => {
   }
 };
 
-// @desc    Update item
-// @route   PUT /api/items/:id
-// @access  Private
 const updateItem = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -101,7 +90,6 @@ const updateItem = async (req, res) => {
       });
     }
 
-    // Check if item belongs to user
     if (item.userId.toString() !== req.user._id.toString()) {
       return res.status(401).json({
         success: false,
@@ -129,9 +117,6 @@ const updateItem = async (req, res) => {
   }
 };
 
-// @desc    Delete item
-// @route   DELETE /api/items/:id
-// @access  Private
 const deleteItem = async (req, res) => {
   try {
     const item = await Item.findById(req.params.id);
@@ -143,7 +128,6 @@ const deleteItem = async (req, res) => {
       });
     }
 
-    // Check if item belongs to user
     if (item.userId.toString() !== req.user._id.toString()) {
       return res.status(401).json({
         success: false,

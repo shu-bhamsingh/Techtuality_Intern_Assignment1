@@ -59,7 +59,6 @@ const authReducer = (state, action) => {
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
 
-  // Load user on app start
   useEffect(() => {
     const loadUser = async () => {
       const token = localStorage.getItem('token');

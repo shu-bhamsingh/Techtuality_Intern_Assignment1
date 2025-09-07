@@ -5,7 +5,6 @@ const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-// Validation rules
 const itemValidation = [
   body('title')
     .trim()
@@ -17,27 +16,14 @@ const itemValidation = [
     .withMessage('Description must be between 1 and 500 characters')
 ];
 
-// All routes are protected
 router.use(auth);
 
-// @route   GET /api/items
-// @desc    Get all items for logged in user
-// @access  Private
 router.get('/', getItems);
 
-// @route   POST /api/items
-// @desc    Create new item
-// @access  Private
 router.post('/', itemValidation, createItem);
 
-// @route   PUT /api/items/:id
-// @desc    Update item
-// @access  Private
 router.put('/:id', itemValidation, updateItem);
 
-// @route   DELETE /api/items/:id
-// @desc    Delete item
-// @access  Private
 router.delete('/:id', deleteItem);
 
 module.exports = router;

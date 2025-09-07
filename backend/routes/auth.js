@@ -5,7 +5,6 @@ const auth = require('../middleware/auth');
 
 const router = express.Router();
 
-// Validation rules
 const signupValidation = [
   body('name')
     .trim()
@@ -43,24 +42,12 @@ const profileUpdateValidation = [
     .withMessage('Please provide a valid email')
 ];
 
-// @route   POST /api/auth/signup
-// @desc    Register user
-// @access  Public
 router.post('/signup', signupValidation, signup);
 
-// @route   POST /api/auth/login
-// @desc    Login user
-// @access  Public
 router.post('/login', loginValidation, login);
 
-// @route   GET /api/auth/me
-// @desc    Get current user
-// @access  Private
 router.get('/me', auth, getMe);
 
-// @route   PUT /api/auth/profile
-// @desc    Update user profile
-// @access  Private
 router.put('/profile', auth, profileUpdateValidation, updateProfile);
 
 module.exports = router;

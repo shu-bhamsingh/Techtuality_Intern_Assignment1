@@ -33,7 +33,6 @@ const Login = () => {
       [name]: value
     }));
     
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({
         ...prev,
@@ -84,9 +83,7 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
-        {/* Main Card */}
         <div className="bg-dark-800/90 backdrop-blur-sm border border-dark-700 rounded-2xl shadow-2xl p-8 space-y-6">
-          {/* Header */}
           <div className="text-center">
             <div className="mx-auto h-12 w-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mb-4">
               <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -101,7 +98,6 @@ const Login = () => {
             </p>
           </div>
           
-          {/* Form */}
           <form className="space-y-6" onSubmit={handleSubmit}>
             {error && (
               <Alert type="error" message={error} onClose={clearError} />
@@ -178,7 +174,6 @@ const Login = () => {
             </button>
           </form>
           
-          {/* Footer */}
           <div className="text-center pt-4 border-t border-dark-700">
             <p className="text-gray-400 text-sm">
               Don't have an account?{' '}
@@ -192,7 +187,6 @@ const Login = () => {
           </div>
         </div>
         
-        {/* Background decoration */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>

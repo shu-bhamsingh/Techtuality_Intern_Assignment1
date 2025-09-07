@@ -14,7 +14,6 @@ const ProfileDropdown = ({ itemCount = 0 }) => {
   const [message, setMessage] = useState('');
   const dropdownRef = useRef(null);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -58,10 +57,8 @@ const ProfileDropdown = ({ itemCount = 0 }) => {
         setMessage('Profile updated successfully!');
         setIsEditing(false);
         
-        // Update the user context with new data
         updateUser(response.data.data.user);
         
-        // Clear success message after 3 seconds
         setTimeout(() => setMessage(''), 3000);
       }
     } catch (error) {
@@ -96,7 +93,6 @@ const ProfileDropdown = ({ itemCount = 0 }) => {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      {/* Profile Avatar Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="relative p-1 rounded-full hover:bg-slate-700/30 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-offset-2 focus:ring-offset-dark-800 group"
@@ -106,12 +102,9 @@ const ProfileDropdown = ({ itemCount = 0 }) => {
         </div>
       </button>
 
-      {/* Dropdown Menu */}
       {isOpen && (
         <div className="absolute right-0 mt-2 w-64 bg-slate-800/90 backdrop-blur-xl border border-slate-600/40 rounded-2xl shadow-2xl z-50 overflow-hidden animate-fade-in-scale">
-          {/* Header */}
           <div className="relative bg-gradient-to-br from-blue-400 via-purple-400 to-indigo-500 p-4">
-            {/* Background decoration */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
             <div className="absolute top-0 right-0 w-16 h-16 bg-white/10 rounded-full -translate-y-8 translate-x-8"></div>
             <div className="absolute bottom-0 left-0 w-12 h-12 bg-white/10 rounded-full translate-y-6 -translate-x-6"></div>
@@ -125,9 +118,7 @@ const ProfileDropdown = ({ itemCount = 0 }) => {
             </div>
           </div>
 
-          {/* Content */}
           <div className="p-4">
-            {/* Item Count Display */}
             <div className="mb-4 text-center">
               <div className="inline-flex items-center space-x-1.5 bg-slate-700/50 rounded-full px-3 py-1.5 border border-slate-600/50">
                 <svg className="w-3 h-3 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -159,7 +150,6 @@ const ProfileDropdown = ({ itemCount = 0 }) => {
             )}
 
             {isEditing ? (
-              /* Edit Form */
               <div className="space-y-5">
                 <div className="flex items-center space-x-3 mb-5">
                   <div className="w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
@@ -223,7 +213,6 @@ const ProfileDropdown = ({ itemCount = 0 }) => {
                 </div>
               </div>
             ) : (
-              /* Action Buttons */
               <div className="space-y-3">
                 <button
                   onClick={handleEdit}

@@ -2,16 +2,12 @@ const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const User = require('../models/User');
 
-// Generate JWT Token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: '30d',
   });
 };
 
-// @desc    Register user
-// @route   POST /api/auth/signup
-// @access  Public
 const signup = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -25,7 +21,6 @@ const signup = async (req, res) => {
 
     const { name, email, password } = req.body;
 
-    // Check if user already exists
     const userExists = await User.findOne({ email });
     if (userExists) {
       return res.status(400).json({
@@ -34,7 +29,6 @@ const signup = async (req, res) => {
       });
     }
 
-    // Create user
     const user = await User.create({
       name,
       email,
@@ -70,9 +64,6 @@ const signup = async (req, res) => {
   }
 };
 
-// @desc    Login user
-// @route   POST /api/auth/login
-// @access  Public
 const login = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -86,7 +77,6 @@ const login = async (req, res) => {
 
     const { email, password } = req.body;
 
-    // Check for user
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({
@@ -95,7 +85,6 @@ const login = async (req, res) => {
       });
     }
 
-    // Check password
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
       return res.status(401).json({
@@ -126,9 +115,6 @@ const login = async (req, res) => {
   }
 };
 
-// @desc    Get current user
-// @route   GET /api/auth/me
-// @access  Private
 const getMe = async (req, res) => {
   try {
     res.status(200).json({
@@ -150,9 +136,6 @@ const getMe = async (req, res) => {
   }
 };
 
-// @desc    Update user profile
-// @route   PUT /api/auth/profile
-// @access  Private
 const updateProfile = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -167,7 +150,6 @@ const updateProfile = async (req, res) => {
     const { name, email } = req.body;
     const userId = req.user._id;
 
-    // Check if email is being changed and if it already exists
     if (email !== req.user.email) {
       const existingUser = await User.findOne({ email });
       if (existingUser) {
@@ -178,7 +160,6 @@ const updateProfile = async (req, res) => {
       }
     }
 
-    // Update user
     const updatedUser = await User.findByIdAndUpdate(
       userId,
       { name, email },
