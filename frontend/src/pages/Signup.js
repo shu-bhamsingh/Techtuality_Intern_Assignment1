@@ -30,8 +30,8 @@ const Signup = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      showSuccess('Welcome to the signup page!');
-    }, 1000);
+      showSuccess('Test Toast - 1 Second Display!', 1000);
+    }, 500);
     return () => clearTimeout(timer);
   }, [showSuccess]);
 
@@ -54,21 +54,21 @@ const Signup = () => {
     const newErrors = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = 'Please enter your full name';
     } else if (formData.name.trim().length < 2) {
-      newErrors.name = 'Name must be at least 2 characters';
+      newErrors.name = 'Name must be at least 2 characters long';
     }
 
     if (!formData.email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = 'Please enter your email address';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = 'Please enter a valid email address';
     }
 
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = 'Please enter a password';
     } else if (formData.password.length < 8) {
-      newErrors.password = 'Password must be at least 8 characters';
+      newErrors.password = 'Password must be at least 8 characters long';
     } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/.test(formData.password)) {
       newErrors.password = 'Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character';
     }
@@ -98,7 +98,8 @@ const Signup = () => {
       showSuccess('Account created successfully! Welcome!');
       navigate('/dashboard');
     } else {
-      showError(result.message || 'Failed to create account. Please try again.');
+      const errorMessage = result.message || result.error || 'Failed to create account. Please try again.';
+      showError(errorMessage);
     }
   };
 

@@ -45,13 +45,13 @@ const Login = () => {
     const newErrors = {};
 
     if (!formData.email) {
-      newErrors.email = 'Email is required';
+      newErrors.email = 'Please enter your email address';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+      newErrors.email = 'Please enter a valid email address';
     }
 
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = 'Please enter your password';
     }
 
     setErrors(newErrors);
@@ -68,7 +68,8 @@ const Login = () => {
       showSuccess('Welcome back! Login successful.');
       navigate('/dashboard');
     } else {
-      showError(result.message || 'Login failed. Please check your credentials.');
+      const errorMessage = result.message || result.error || 'Login failed. Please check your credentials.';
+      showError(errorMessage);
     }
   };
 

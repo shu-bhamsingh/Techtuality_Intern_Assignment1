@@ -103,7 +103,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       const message = error.response?.data?.message || 'Signup failed';
       dispatch({ type: 'AUTH_FAIL', payload: message });
-      return { success: false, error: message };
+      return { success: false, message: message, error: message };
     }
   };
 
@@ -125,7 +125,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       const message = error.response?.data?.message || 'Login failed';
       dispatch({ type: 'AUTH_FAIL', payload: message });
-      return { success: false, error: message };
+      return { success: false, message: message, error: message };
     }
   };
 

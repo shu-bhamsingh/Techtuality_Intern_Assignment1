@@ -25,7 +25,7 @@ const signup = async (req, res) => {
     if (userExists) {
       return res.status(400).json({
         success: false,
-        message: 'User already exists with this email'
+        message: 'An account with this email already exists. Please use a different email or try logging in instead.'
       });
     }
 
@@ -81,7 +81,7 @@ const login = async (req, res) => {
     if (!user) {
       return res.status(401).json({
         success: false,
-        message: 'Invalid credentials'
+        message: 'Email not found. Please check your email address or sign up for a new account.'
       });
     }
 
@@ -89,7 +89,7 @@ const login = async (req, res) => {
     if (!isMatch) {
       return res.status(401).json({
         success: false,
-        message: 'Invalid credentials'
+        message: 'Incorrect password. Please check your password and try again.'
       });
     }
 
