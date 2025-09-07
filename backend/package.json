@@ -1,7 +1,7 @@
 {
-  "name": "mern-app-backend",
+  "name": "itemvault-backend",
   "version": "1.0.0",
-  "description": "Backend for MERN stack application",
+  "description": "Backend for ItemVault application",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

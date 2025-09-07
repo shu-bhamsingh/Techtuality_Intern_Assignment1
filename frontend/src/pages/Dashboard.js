@@ -65,7 +65,7 @@ const Dashboard = () => {
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-white mb-2">
-            Welcome back, {user?.name}!
+            Your items, safe and accessible.
           </h1>
           <p className="text-gray-400">
             Manage your items and stay organized.

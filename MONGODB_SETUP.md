@@ -6,7 +6,7 @@
 
 1. **Go to [MongoDB Atlas](https://www.mongodb.com/atlas)**
 2. **Sign up for a free account**
-3. **Create a new project** (e.g., "MERN App")
+3. **Create a new project** (e.g., "ItemVault")
 4. **Create a free cluster** (M0 Sandbox)
 5. **Set up database access:**
    - Go to "Database Access" in the left sidebar
@@ -23,18 +23,18 @@
    - Choose "Connect your application"
    - Copy the connection string
    - Replace `<password>` with your database user password
-   - Replace `<dbname>` with `mern-app`
+   - Replace `<dbname>` with `itemvault`
 
 ### Option 2: Use Local MongoDB (Alternative)
 
 If you have MongoDB installed locally, uncomment this line in `.env`:
 ```
-DB_URI=mongodb://localhost:27017/mern-app
+DB_URI=mongodb://localhost:27017/itemvault
 ```
 
 And comment out the Atlas line:
 ```
-# DB_URI=mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@YOUR_CLUSTER.mongodb.net/mern-app?retryWrites=true&w=majority
+# DB_URI=mongodb+srv://YOUR_USERNAME:YOUR_PASSWORD@YOUR_CLUSTER.mongodb.net/itemvault?retryWrites=true&w=majority
 ```
 
 ## Update Your .env File
@@ -43,7 +43,7 @@ Replace the placeholder connection string in `backend/.env`:
 
 ```env
 # Replace this line with your actual MongoDB Atlas connection string:
-DB_URI=mongodb+srv://yourusername:yourpassword@cluster0.xxxxx.mongodb.net/mern-app?retryWrites=true&w=majority
+DB_URI=mongodb+srv://yourusername:yourpassword@cluster0.xxxxx.mongodb.net/itemvault?retryWrites=true&w=majority
 
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 PORT=5000
@@ -72,11 +72,11 @@ Server running in development mode on port 5000
 1. **"ENOTFOUND" error**: Check your connection string format
 2. **Authentication failed**: Verify username/password in connection string
 3. **Network access denied**: Make sure your IP is whitelisted in Atlas
-4. **Database name**: Ensure the database name in the connection string is `mern-app`
+4. **Database name**: Ensure the database name in the connection string is `itemvault`
 
 ### Example Working Connection String:
 ```
-mongodb+srv://myuser:mypassword@cluster0.abc123.mongodb.net/mern-app?retryWrites=true&w=majority
+mongodb+srv://myuser:mypassword@cluster0.abc123.mongodb.net/itemvault?retryWrites=true&w=majority
 ```
 
 ## Next Steps

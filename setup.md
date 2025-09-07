@@ -15,7 +15,7 @@ npm install
 
 Create `.env` file in backend directory:
 ```env
-DB_URI=mongodb://localhost:27017/mern-app
+DB_URI=mongodb://localhost:27017/itemvault
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 PORT=5000
 NODE_ENV=development

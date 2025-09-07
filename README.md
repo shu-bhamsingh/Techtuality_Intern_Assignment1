@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-# Techtuality_Intern_Assignment
-Full-stack MERN app with JWT authentication and Tailwind CSS dark theme. Users can sign up, log in, and manage items securely. Fully responsive, API-protected, and deployed with frontend on Vercel and backend on Render for production-ready use.
-=======
-# Techtuality - MERN Stack Application
+# ItemVault - MERN Stack Application
 
-A full-stack web application built with the MERN stack (MongoDB, Express.js, React.js, Node.js) featuring user authentication, item management, and a beautiful dark-themed UI.
+A full-stack web application built with the MERN stack (MongoDB, Express.js, React.js, Node.js) featuring user authentication, item management, and a beautiful dark-themed UI. Users can sign up, log in, and manage items securely with a fully responsive, API-protected interface.
 
 ## Features
 
@@ -51,7 +47,7 @@ A full-stack web application built with the MERN stack (MongoDB, Express.js, Rea
 ## Project Structure
 
 ```
-Techtuality/
+ItemVault/
 ├── backend/
 │   ├── config/
 │   │   └── database.js
@@ -137,10 +133,10 @@ For detailed MongoDB setup instructions (including MongoDB Atlas), refer to the 
    Create a `.env` file in the backend directory:
    ```env
    # For local MongoDB
-   DB_URI=mongodb://localhost:27017/mern-app
+   DB_URI=mongodb://localhost:27017/itemvault
    
    # For MongoDB Atlas (recommended)
-   # DB_URI=mongodb+srv://yourusername:yourpassword@cluster0.xxxxx.mongodb.net/mern-app?retryWrites=true&w=majority
+   # DB_URI=mongodb+srv://yourusername:yourpassword@cluster0.xxxxx.mongodb.net/itemvault?retryWrites=true&w=majority
    
    JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
    PORT=5000
@@ -245,10 +241,10 @@ For detailed MongoDB setup instructions (including MongoDB Atlas), refer to the 
 ### Backend (.env)
 ```env
 # For local MongoDB
-DB_URI=mongodb://localhost:27017/mern-app
+DB_URI=mongodb://localhost:27017/itemvault
 
 # For MongoDB Atlas (recommended for production)
-# DB_URI=mongodb+srv://yourusername:yourpassword@cluster0.xxxxx.mongodb.net/mern-app?retryWrites=true&w=majority
+# DB_URI=mongodb+srv://yourusername:yourpassword@cluster0.xxxxx.mongodb.net/itemvault?retryWrites=true&w=majority
 
 JWT_SECRET=your-super-secret-jwt-key-change-this-in-production
 PORT=5000
@@ -284,4 +280,5 @@ This project includes additional setup and configuration files:
 If you encounter any issues or have questions, please open an issue on GitHub.
 
 ---
->>>>>>> adf90fa (Initial commit)
+
+**Happy Coding! 🚀**
