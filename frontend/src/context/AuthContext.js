@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useEffect } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, useCallback } from 'react';
 import { authAPI } from '../services/api';
 
 const AuthContext = createContext();
@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }) => {
     loadUser();
   }, []);
 
-  const signup = async (userData) => {
+  const signup = useCallback(async (userData) => {
     dispatch({ type: 'AUTH_START' });
     try {
       const response = await authAPI.signup(userData);
@@ -105,9 +105,9 @@ export const AuthProvider = ({ children }) => {
       dispatch({ type: 'AUTH_FAIL', payload: message });
       return { success: false, message: message, error: message };
     }
-  };
+  }, []);
 
-  const login = async (userData) => {
+  const login = useCallback(async (userData) => {
     dispatch({ type: 'AUTH_START' });
     try {
       const response = await authAPI.login(userData);
@@ -127,15 +127,15 @@ export const AuthProvider = ({ children }) => {
       dispatch({ type: 'AUTH_FAIL', payload: message });
       return { success: false, message: message, error: message };
     }
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     dispatch({ type: 'LOGOUT' });
-  };
+  }, []);
 
-  const updateUser = (userData) => {
+  const updateUser = useCallback((userData) => {
     localStorage.setItem('user', JSON.stringify(userData));
     dispatch({
       type: 'AUTH_SUCCESS',
@@ -144,11 +144,11 @@ export const AuthProvider = ({ children }) => {
         token: state.token,
       },
     });
-  };
+  }, [state.token]);
 
-  const clearError = () => {
+  const clearError = useCallback(() => {
     dispatch({ type: 'CLEAR_ERROR' });
-  };
+  }, []);
 
   const value = {
     ...state,

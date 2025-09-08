@@ -26,14 +26,15 @@ const Signup = () => {
 
   useEffect(() => {
     return () => clearError();
-  }, [clearError]);
+  }, []); // Remove clearError from dependencies to prevent infinite loop
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      showSuccess('Test Toast - 1 Second Display!', 1000);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [showSuccess]);
+  // Remove the test toast useEffect as it's causing infinite loop
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     showSuccess('Test Toast - 1 Second Display!', 1000);
+  //   }, 500);
+  //   return () => clearTimeout(timer);
+  // }, [showSuccess]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

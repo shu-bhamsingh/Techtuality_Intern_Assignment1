@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || 'https://techtuality-intern-assignment1.onrender.com/api';
+// For local development, uncomment the line below and comment the production URL
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+// const API_URL = process.env.REACT_APP_API_URL || 'https://techtuality-intern-assignment1.onrender.com/api';
 
 
 const api = axios.create({

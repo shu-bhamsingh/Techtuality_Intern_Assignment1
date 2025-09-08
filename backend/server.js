@@ -17,7 +17,7 @@ const app = express();
 // CORS configuration for production
 const corsOptions = {
   origin: [
-    'https://techtuality-assignment.netlify.app', // Your current Netlify URL
+    // 'https://techtuality-assignment.netlify.app', // Your current Netlify URL
     'http://localhost:3000' // For local development
   ],
   credentials: true,
@@ -38,12 +38,30 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/auth", authRoutes);
 app.use("/api/items", itemRoutes);
 
+// Root endpoint
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "ItemVault API Server",
+    version: "1.0.0",
+    environment: process.env.NODE_ENV || "development",
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      health: "/api/health",
+      auth: "/api/auth",
+      items: "/api/items"
+    }
+  });
+});
+
 // Health check
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
     message: "Server is running",
-    timestamp: new Date().toISOString()
+    environment: process.env.NODE_ENV || "development",
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime()
   });
 });
 
@@ -63,5 +81,5 @@ const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV || "development";
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running in ${NODE_ENV} mode on port ${PORT}`);
+  console.log(` Server running in ${NODE_ENV} mode on port ${PORT}`);
 });
