@@ -3,7 +3,7 @@ const Item = require('../models/Item');
 
 const getItems = async (req, res) => {
   try {
-    const { search, sort } = req.query;
+    const { search } = req.query;
     let query = { userId: req.user._id };
 
     if (search) {
@@ -13,14 +13,7 @@ const getItems = async (req, res) => {
       ];
     }
 
-    let sortBy = { createdAt: -1 };
-    if (sort === 'title') {
-      sortBy = { title: 1 };
-    } else if (sort === 'oldest') {
-      sortBy = { createdAt: 1 };
-    }
-
-    const items = await Item.find(query).sort(sortBy);
+    const items = await Item.find(query);
     
     res.status(200).json({
       success: true,
