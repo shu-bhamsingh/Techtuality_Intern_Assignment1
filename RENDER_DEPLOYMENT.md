@@ -69,7 +69,7 @@ NODE_ENV=production
 DB_URI=mongodb+srv://username:password@cluster.mongodb.net/itemvault?retryWrites=true&w=majority
 JWT_SECRET=your-super-secret-jwt-key-here
 JWT_EXPIRE=7d
-FRONTEND_URL=https://your-frontend-domain.vercel.app
+FRONTEND_URL=https://techtuality-assignment.netlify.app
 ```
 
 **Important Notes:**

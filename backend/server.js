@@ -14,9 +14,22 @@ connectDB();
 
 const app = express();
 
-// Development: allow all origins
-// Later, restrict to your Vercel domain
-app.use(cors());
+// CORS configuration for production
+const corsOptions = {
+  origin: [
+    'https://techtuality-assignment.netlify.app', // Your current Netlify URL
+    'http://localhost:3000' // For local development
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

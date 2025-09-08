@@ -35,7 +35,7 @@ A root `package.json` has been created to help Vercel understand the project str
 ### 3. **Environment Variables in Vercel**
 Add these environment variables in your Vercel dashboard:
 ```
-REACT_APP_API_URL=https://your-backend-url.herokuapp.com/api
+REACT_APP_API_URL=https://techtuality-intern-assignment1.onrender.com/api
 ```
 
 ### 4. **Fixed Issues**
@@ -53,7 +53,7 @@ REACT_APP_API_URL=https://your-backend-url.herokuapp.com/api
 ### 5. **Deployment Steps**
 1. **Commit all changes to git**
 2. **Set environment variables in Vercel dashboard:**
-   - `REACT_APP_API_URL` = your backend URL
+   - `REACT_APP_API_URL` = `https://techtuality-intern-assignment1.onrender.com/api`
 3. **Deploy to Vercel:**
    - Connect your GitHub repository to Vercel
    - Vercel will automatically detect the configuration from `vercel.json`
