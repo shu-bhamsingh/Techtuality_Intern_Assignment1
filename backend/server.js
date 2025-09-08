@@ -14,27 +14,60 @@ connectDB();
 
 const app = express();
 
-// CORS configuration for production
+// ------------------- CORS Configuration -------------------
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://techtuality-assignment.netlify.app",// Backup Netlify URL
+];
+
 const corsOptions = {
-  origin: [
-    // 'https://techtuality-assignment.netlify.app', // Your current Netlify URL
-    'http://localhost:3000' // For local development
-  ],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Check if origin is in allowed list
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    
+    // For development, allow any localhost
+    if (process.env.NODE_ENV === "development" && origin.includes("localhost")) {
+      return callback(null, true);
+    }
+    
+    // TEMPORARY: Allow all origins for debugging (remove in production)
+    if (process.env.NODE_ENV === "production") {
+      console.log("Allowing origin for debugging:", origin);
+      return callback(null, true);
+    }
+    
+    // Log the blocked origin for debugging
+    console.log("CORS blocked origin:", origin);
+    callback(new Error("Not allowed by CORS"));
+  },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  optionsSuccessStatus: 200
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With", "Accept"],
+  optionsSuccessStatus: 200,
+  preflightContinue: false
 };
 
 app.use(cors(corsOptions));
 
-// Handle preflight requests
-app.options('*', cors(corsOptions));
+// Handle preflight requests explicitly
+app.options("*", cors(corsOptions));
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// ------------------- Middleware -------------------
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// Routes
+// Logging middleware for debugging
+app.use((req, res, next) => {
+  console.log(`${new Date().toISOString()} - ${req.method} ${req.path} - Origin: ${req.get('Origin') || 'No Origin'}`);
+  next();
+});
+
+// ------------------- Routes -------------------
 app.use("/api/auth", authRoutes);
 app.use("/api/items", itemRoutes);
 
@@ -49,8 +82,8 @@ app.get("/", (req, res) => {
     endpoints: {
       health: "/api/health",
       auth: "/api/auth",
-      items: "/api/items"
-    }
+      items: "/api/items",
+    },
   });
 });
 
@@ -61,7 +94,7 @@ app.get("/api/health", (req, res) => {
     message: "Server is running",
     environment: process.env.NODE_ENV || "development",
     timestamp: new Date().toISOString(),
-    uptime: process.uptime()
+    uptime: process.uptime(),
   });
 });
 
@@ -69,14 +102,14 @@ app.get("/api/health", (req, res) => {
 app.use("*", (req, res) => {
   res.status(404).json({
     success: false,
-    message: "Route not found"
+    message: "Route not found",
   });
 });
 
 // Error handler
 app.use(errorHandler);
 
-// PORT from Render
+// ------------------- Start Server -------------------
 const PORT = process.env.PORT || 5000;
 const NODE_ENV = process.env.NODE_ENV || "development";
 
